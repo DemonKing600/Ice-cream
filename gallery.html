@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ice Cream Gallery 🍦</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: linear-gradient(135deg,#ff9a9e,#fbc2eb,#a6c1ee);
+    overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+    text-align: center;
+    padding: 15px;
+    font-weight: bold;
+}
+nav a {
+    margin: 15px;
+    text-decoration: none;
+    color: #333;
+}
+
+/* TITLE */
+h1 {
+    text-align: center;
+    color: #ff4da6;
+}
+
+/* STICKERS */
+.sticker {
+    position: absolute;
+    font-size: 30px;
+    animation: float 6s infinite;
+}
+@keyframes float {
+    50% {transform: translateY(-20px);}
+}
+
+/* GRID */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* CARD */
+.card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+.card:hover {
+    transform: scale(1.05);
+}
+
+/* IMAGE */
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+/* TEXT */
+.card h3 {
+    margin: 10px;
+    color: #ff4da6;
+}
+.card p {
+    margin: 0 10px 15px;
+    font-size: 14px;
+}
+
+/* LIGHTBOX */
+.lightbox {
+    position: fixed;
+    display: none;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+}
+.lightbox img {
+    max-width: 80%;
+    border-radius: 15px;
+}
+.lightbox span {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<!-- STICKERS -->
+<div class="sticker" style="top:10%; left:5%;">🍦</div>
+<div class="sticker" style="top:25%; left:85%;">🍧</div>
+<div class="sticker" style="top:70%; left:10%;">🍨</div>
+<div class="sticker" style="top:80%; left:80%;">🍩</div>
+
+<nav>
+    <a href="index.html">Explore</a>
+    <a href="quiz.html">Quiz</a>
+    <a href="gallery.html">Gallery</a>
+</nav>
+
+<h1>📸 Ice Cream Gallery</h1>
+
+<div class="gallery">
+
+<div class="card">
+<img src="https://img.sndimg.com/food/image/upload/q_92,fl_progressive,w_1200,c_scale/v1/img/recipes/52/97/33/YfSeZwzhTxzY9x2AfY3F_Rainbow%20Popsicle%20Still%2001.jpg" onclick="openImg(this.src)">
+<h3>Rainbow Popsicle</h3>
+<p>Bright layered popsicle bursting with fruity flavors.</p>
+</div>
+
+<div class="card">
+<img src="https://thegirlinspired.com/wp-content/uploads/2022/08/How-to-Make-Rolled-Ice-Cream-sq.jpg" onclick="openImg(this.src)">
+<h3>Ice Cream Rolls</h3>
+<p>Thai-style rolled ice cream made fresh on a cold plate.</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1590080874088-eec64895b423" onclick="openImg(this.src)">
+<h3>Classic Sundae</h3>
+<p>Vanilla ice cream topped with chocolate syrup and nuts.</p>
+</div>
+
+<div class="card">
+<img src="https://i.etsystatic.com/7386575/r/il/ac172c/4331610070/il_1080xN.4331610070_najn.jpg" onclick="openImg(this.src)">
+<h3>Gelato Cup</h3>
+<p>Dense and creamy Italian dessert with intense flavor.</p>
+</div>
+
+<div class="card">
+<img src="https://i.pinimg.com/736x/79/8f/74/798f740d8b757eaa94b1e8150bf9169b.jpg" onclick="openImg(this.src)">
+<h3>Waffle Cone Delight</h3>
+<p>Crispy waffle cone filled with smooth ice cream.</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1606312619070-d48b4c652a52" onclick="openImg(this.src)">
+<h3>Chocolate Bar Ice Cream</h3>
+<p>Frozen chocolate-covered ice cream bar.</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9" onclick="openImg(this.src)">
+<h3>Fruit Sorbet</h3>
+<p>Dairy-free frozen dessert made with real fruits.</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1571506165871-ee72a35bc9d4" onclick="openImg(this.src)">
+<h3>Sprinkle Cone</h3>
+<p>Colorful sprinkles on creamy soft-serve cone.</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1551024601-bec78aea704b" onclick="openImg(this.src)">
+<h3>Berry Sundae</h3>
+<p>Mixed berries with creamy ice cream and syrup.</p>
+</div>
+
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+<span onclick="closeImg()">✖</span>
+<img id="lightbox-img">
+</div>
+
+<script>
+function openImg(src){
+    document.getElementById("lightbox").style.display="flex";
+    document.getElementById("lightbox-img").src=src;
+}
+function closeImg(){
+    document.getElementById("lightbox").style.display="none";
+}
+</script>
+
+</body>
+</html>

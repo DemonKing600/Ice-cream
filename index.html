@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ice Cream Universe 🍦</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: linear-gradient(135deg,#ff9a9e,#fad0c4);
+    overflow-x: hidden;
+}
+
+/* FLOATING STICKERS */
+.sticker {
+    position: absolute;
+    font-size: 35px;
+    animation: float 6s infinite ease-in-out;
+}
+
+@keyframes float {
+    0% {transform: translateY(0);}
+    50% {transform: translateY(-25px);}
+    100% {transform: translateY(0);}
+}
+
+/* NAV */
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 30px;
+    color: white;
+    font-weight: bold;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: yellow;
+}
+
+/* SECTION */
+.section {
+    padding: 60px 20px;
+    text-align: center;
+    background: white;
+    margin: 20px;
+    border-radius: 20px;
+}
+
+/* SLIDER */
+.slider {
+    position: relative;
+    max-width: 600px;
+    margin: auto;
+}
+
+.slide {
+    display: none;
+}
+
+.slide img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+button.next, button.prev {
+    position: absolute;
+    top: 50%;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.prev { left: 0; }
+.next { right: 0; }
+
+</style>
+</head>
+
+<body>
+
+<!-- STICKERS -->
+<div class="sticker" style="top:5%; left:5%;">🍦</div>
+<div class="sticker" style="top:20%; left:85%;">🍧</div>
+<div class="sticker" style="top:70%; left:10%;">🍨</div>
+<div class="sticker" style="top:80%; left:80%;">🍩</div>
+<div class="sticker" style="top:40%; left:50%;">🍫</div>
+
+<!-- NAVIGATION -->
+<nav>
+    <div>🍦 Ice Cream Universe</div>
+    <div>
+        <a href="index.html">Explore</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="gallery.html">Gallery</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="section" data-aos="fade-up">
+    <h1>Welcome to Ice Cream World</h1>
+    <p>Sweet, colorful, and full of fun!</p>
+    <img src="https://images.unsplash.com/photo-1501443762994-82bd5dace89a" width="250">
+</section>
+
+<!-- ABOUT / EXPLORE CONTENT -->
+<section class="section" data-aos="fade-right">
+    <h2>🍨 About Ice Cream</h2>
+    <p>
+        Ice cream is a frozen dessert loved worldwide. It comes in many flavors,
+        textures, and styles like gelato, sorbet, and soft serve.
+    </p>
+</section>
+
+<!-- MAP -->
+<section class="section map" data-aos="fade-left">
+    <h2>🌍 Ice Cream Origins</h2>
+    <iframe src="https://www.google.com/maps?q=Italy&output=embed"
+        style="width:100%; height:300px; border-radius:15px;"></iframe>
+</section>
+
+<!-- GALLERY PREVIEW -->
+<section class="section" data-aos="zoom-in">
+    <h2>📸 Gallery Preview</h2>
+
+    <div class="slider">
+
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb">
+        </div>
+
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1570197788417-0e82375c9371">
+        </div>
+
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f">
+        </div>
+
+        <button class="prev" onclick="changeSlide(-1)">❮</button>
+        <button class="next" onclick="changeSlide(1)">❯</button>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+<section class="section" data-aos="fade-up">
+    <h3>Explore More via Menu 🍦</h3>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+<script>
+AOS.init();
+
+/* SLIDER */
+let index = 0;
+const slides = document.getElementsByClassName("slide");
+
+function showSlide(i) {
+    for(let s of slides) s.style.display = "none";
+    slides[i].style.display = "block";
+}
+
+function changeSlide(n) {
+    index += n;
+    if(index >= slides.length) index = 0;
+    if(index < 0) index = slides.length - 1;
+    showSlide(index);
+}
+
+/* AUTO SLIDE */
+setInterval(() => {
+    changeSlide(1);
+}, 3000);
+
+showSlide(index);
+</script>
+
+</body>
+</html>
